@@ -660,6 +660,7 @@ public class Main {
         }
     }
 
+    //--------------------(34) Find factorial--------------------------
     //Find Factorial based on value
     public static int findFactorial(int n) {
         int fac = 1;
@@ -669,7 +670,7 @@ public class Main {
         return fac;
     }
 
-    //find permutaion and combination by using factorial function
+    //-------------------(35) find permutaion and combination by using factorial function-----------
     public static void findPrmutaionCombination() {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -678,8 +679,30 @@ public class Main {
         System.out.println(res);
     }
 
+    //--------------------(36) Digit Of Number --------------------------
+    public static int DigitOfNumber(int n, int num) {
+        int count = 0;
+        while (n != 0) {
+            int digit = n % 10;
+            n = n / 10;
+            if (num == digit) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void findDigitOfNumber() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int num = sc.nextInt();
+        int count = DigitOfNumber(n, num);
+        System.out.println(count);
+    }
+//    ---------------------------------------------------------------------------
+
     public static void main(String[] args) {
-        findPrmutaionCombination();
+        findDigitOfNumber();
 
     }
 
