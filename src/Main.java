@@ -660,8 +660,26 @@ public class Main {
         }
     }
 
+    //Find Factorial based on value
+    public static int findFactorial(int n) {
+        int fac = 1;
+        for (int i = 1; i <= n; i++) {
+            fac = fac * i;
+        }
+        return fac;
+    }
+
+    //find permutaion and combination by using factorial function
+    public static void findPrmutaionCombination() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int r = sc.nextInt();
+        int res = findFactorial(n) / findFactorial(n - r);
+        System.out.println(res);
+    }
+
     public static void main(String[] args) {
-        pattern20();
+        findPrmutaionCombination();
 
     }
 
