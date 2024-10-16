@@ -701,8 +701,26 @@ public class Main {
     }
 //    ---------------------------------------------------------------------------
 
+
+    //--------------------(37) Decimal to any base --------------------------
+    public static void convertDecimalToAnyBase() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int b = sc.nextInt();
+        int count = 0;
+        int ans = 0;
+        while (n != 0) {
+            int dig = n % b;
+            n = n / b;
+            ans = ans + (dig * (int) Math.pow(10, count));
+            count++;
+        }
+        System.out.println(ans);
+    }
+//    ----------------------------------------------------------------
+
     public static void main(String[] args) {
-        findDigitOfNumber();
+        convertDecimalToAnyBase();
 
     }
 
