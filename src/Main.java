@@ -717,10 +717,26 @@ public class Main {
         }
         System.out.println(ans);
     }
-//    ----------------------------------------------------------------
+
+    //    ----------------------------------------------------------------
+//--------------------(38) Any base to decimal --------------------------
+    public static void anyBaseToDecimal() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int b = sc.nextInt();
+        int count = 0;
+        int ans = 0;
+        while (n != 0) {
+            int dig = n % 10;
+            n = n / 10;
+            ans = ans + (dig * (int) Math.pow(b, count));
+            count++;
+        }
+        System.out.println(ans);
+    }
 
     public static void main(String[] args) {
-        convertDecimalToAnyBase();
+        anyBaseToDecimal();
 
     }
 
