@@ -735,8 +735,45 @@ public class Main {
         System.out.println(ans);
     }
 
+    //--------------------(39) Any base to Any base --------------------------
+    public static void anyBaseToAnyBase() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int b1 = sc.nextInt();
+        int b2 = sc.nextInt();
+        int decimalValue = anyBaseToDecimal(n, b1);
+        int convertedValueToAnyBase = decimalToAnyBase(decimalValue, b2);
+        System.out.println(convertedValueToAnyBase);
+    }
+
+    public static int anyBaseToDecimal(int n, int currentBase) {
+        int ans = 0;
+        int count = 0;
+        while (n != 0) {
+            int dig = n % 10;
+            n = n / 10;
+            ans = ans + (dig * (int) Math.pow(currentBase, count));
+            count++;
+        }
+        return ans;
+    }
+
+    public static int decimalToAnyBase(int n, int conversionBase) {
+        int ans = 0;
+        int count = 0;
+        while (n != 0) {
+            int dig = n % conversionBase;
+            n = n / conversionBase;
+            ans = ans + (dig * (int) Math.pow(10, count));
+            count++;
+        }
+        return ans;
+
+    }
+//    ------------------------------------------------------------------
+
     public static void main(String[] args) {
-        anyBaseToDecimal();
+        anyBaseToAnyBase();
 
     }
 
