@@ -772,8 +772,33 @@ public class Main {
     }
 //    ------------------------------------------------------------------
 
+
+    //--------------------(40) Any base to Any base Addition --------------------------
+    public static void anyBaseAnyBaseAddition() {
+        Scanner sc = new Scanner(System.in);
+        int b = sc.nextInt();
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        int sum = 0;
+        int count = 0;
+        int c = 0;
+        while (n1 > 0 || n2 > 0 || c > 0) {
+            int d1 = n1 % 10;
+            int d2 = n2 % 10;
+            n1 = n1 / 10;
+            n2 = n2 / 10;
+            int dig = d1 + d2 + c;
+            int rem = dig % b;
+            c = dig / b;
+            sum = sum + rem * (int) Math.pow(10, count);
+            count++;
+        }
+
+        System.out.println(sum);
+    }
+
     public static void main(String[] args) {
-        anyBaseToAnyBase();
+        anyBaseAnyBaseAddition();
 
     }
 
