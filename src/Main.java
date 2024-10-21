@@ -630,9 +630,7 @@ public class Main {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
 
-                if ((j == n / 2 + 1 || i == n / 2 + 1) || (i == 1 && i < n / 2 && j <= n / 2)
-                        || (i == n && j >= n / 2 + 1) || (j == n && i <= n / 2 + 1) || (j == 1 && i >= n / 2 + 1)
-                ) {
+                if ((j == n / 2 + 1 || i == n / 2 + 1) || (i == 1 && i < n / 2 && j <= n / 2) || (i == n && j >= n / 2 + 1) || (j == n && i <= n / 2 + 1) || (j == 1 && i >= n / 2 + 1)) {
                     System.out.print("\t *");
                 } else {
                     System.out.print("\t ");
@@ -797,8 +795,40 @@ public class Main {
         System.out.println(sum);
     }
 
+    public static void anyBaseAnyBaseSubtraction() {
+        Scanner sc = new Scanner(System.in);
+        int b = sc.nextInt();
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        int sum = 0;
+        int count = 0;
+        int borrow = 0;
+        while (n2 > 0) {
+            int d1 = n1 % 10;
+            int d2 = n2 % 10;
+            n1 = n1 / 10;
+            n2 = n2 / 10;
+
+
+            int dig = 0;
+            d2 = d2 + borrow;
+            if (d2 >= d1) {
+                borrow = 0;
+                dig = d2 - d1;
+            } else {
+                borrow = -1;
+                dig = d2 + b - d1;
+            }
+
+
+            sum = sum + dig * (int) Math.pow(10, count);
+            count++;
+        }
+        System.out.println(sum);
+    }
+
     public static void main(String[] args) {
-        anyBaseAnyBaseAddition();
+        anyBaseAnyBaseSubtraction();
 
     }
 
