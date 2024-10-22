@@ -879,12 +879,71 @@ public class Main {
             sum = sum + rem * (int) Math.pow(10, count);
             count++;
         }
-        return sum ;
+        return sum;
+    }
+
+//-------------------------------------------------------------------
+//--------------------(43) Array --------------------------
+
+    public static void learnArray() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i] + " ");
+        }
+        System.out.println(arr);
+    }
+
+    //--------------------(44)Span in Array --------------------------
+    public static void spanInArray() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        int maxi = Integer.MIN_VALUE;
+        int mini = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > maxi) {
+                maxi = arr[i];
+            }
+            if (arr[i] < mini) {
+                mini = arr[i];
+            }
+        }
+        int span = maxi - mini;
+        System.out.println(span);
+    }
+
+    //--------------------(45)Span in Array --------------------------
+    public static void findEleInArray() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int num = sc.nextInt();
+        int[] arr = new int[n];
+        int ans=-1;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                ans = i;
+            }
+        }
+        System.out.println(ans);
     }
 
 
     public static void main(String[] args) {
-        anyBaseAnyBaseMultiplication();
+        findEleInArray();
 
     }
 
