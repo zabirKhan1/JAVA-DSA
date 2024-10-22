@@ -928,7 +928,7 @@ public class Main {
         int n = sc.nextInt();
         int num = sc.nextInt();
         int[] arr = new int[n];
-        int ans=-1;
+        int ans = -1;
         for (int i = 0; i < arr.length; i++) {
             arr[i] = sc.nextInt();
         }
@@ -941,9 +941,143 @@ public class Main {
         System.out.println(ans);
     }
 
+    //--------------------(46)barChanrt By Array --------------------------
+    public static void printBarChart() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int maxi = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > maxi) {
+                maxi = arr[i];
+            }
+        }
+
+        System.out.println(maxi);
+
+        for (int i = maxi; i > 0; i--) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j] >= i) {
+                    System.out.print("\t *");
+                } else {
+                    System.out.print("\t ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    //--------------------(46) Direct Sum Of two Array --------------------------
+    public static void sumOfTwoArray() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        int n1 = sc.nextInt();
+        int[] arr2 = new int[n1];
+
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = sc.nextInt();
+        }
+
+        int[] ans = new int[n1];
+        int i = 0;
+        int j = 0;
+        if (n1 == n) {
+            while (i != n1) {
+                ans[i] = arr[i] + arr2[j];
+                i++;
+                j++;
+            }
+        } else if (n > n1) {
+            while (i != n1) {
+                ans[i] = arr[i] + arr2[j];
+                i++;
+                j++;
+            }
+            if (j < n) {
+                while (j != n) {
+                    ans[j] = arr[j];
+                    j++;
+                }
+            }
+        } else {
+            while (i != n) {
+                ans[i] = arr[i] + arr2[j];
+                i++;
+                j++;
+            }
+            if (j < n1) {
+                while (j != n1) {
+                    ans[j] = arr2[j];
+                    j++;
+                }
+            }
+        }
+
+        for (int l = 0; l < n1; l++) {
+            System.out.println(ans[l]);
+        }
+
+    }
+
+    //--------------------(47) Sum Of two Array --------------------------
+    public static void sumOfTwoArrayWithCarry() {
+        Scanner sc = new Scanner(System.in);
+        int n1 = sc.nextInt();
+        int[] arr1 = new int[n1];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = sc.nextInt();
+        }
+        int n2 = sc.nextInt();
+        int[] arr2 = new int[n2];
+
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = sc.nextInt();
+        }
+
+        int[] ans = new int[n1 > n2 ? n1 : n2];
+
+        int i = arr1.length - 1;
+        int j = arr2.length - 1;
+        int k = ans.length - 1;
+        int c = 0;
+        int sum = 0;
+        while (k != 0) {
+            sum = c;
+            if (i >= 0) {
+                sum = sum + arr1[i];
+            }
+            if (j >= 0) {
+                sum = sum + arr2[j];
+            }
+            c = sum / 10;
+            int dig = sum % 10;
+            ans[k] = dig;
+            j--;
+            i--;
+            k--;
+        }
+
+        if (c != 0) {
+            System.out.println(c);
+        }
+        for (int m = 0; m < ans.length; m++) {
+            System.out.println(ans[m]);
+        }
+
+    }
 
     public static void main(String[] args) {
-        findEleInArray();
+        sumOfTwoArrayWithCarry();
 
     }
 
