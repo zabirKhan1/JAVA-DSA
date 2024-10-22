@@ -795,6 +795,7 @@ public class Main {
         System.out.println(sum);
     }
 
+    //--------------------(41) Any base to Any base Substraction --------------------------
     public static void anyBaseAnyBaseSubtraction() {
         Scanner sc = new Scanner(System.in);
         int b = sc.nextInt();
@@ -827,8 +828,63 @@ public class Main {
         System.out.println(sum);
     }
 
+    //--------------------(42) Any base to Any base Multiplication --------------------------
+    public static void anyBaseAnyBaseMultiplication() {
+        Scanner sc = new Scanner(System.in);
+        int b = sc.nextInt();
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        int count = 0;
+        int sum = 0;
+        while (num2 > 0) {
+            int val = num2 % 10;
+            num2 = num2 / 10;
+            int mul = getMultipliedValue(num1, val, b, count);
+            sum = anyBaseAnyBaseAdditionHelper(b, sum, mul * (int) Math.pow(10, count));
+            count++;
+        }
+        System.out.println(sum);
+    }
+
+    public static int anyBaseAnyBaseAdditionHelper(int b, int n1, int n2) {
+        int sum = 0;
+        int count = 0;
+        int carry = 0;
+        while (n1 > 0 || n2 > 0 || carry > 0) {
+            int d1 = n1 % 10;
+            int d2 = n2 % 10;
+            n1 = n1 / 10;
+            n2 = n2 / 10;
+            int dig = d1 + d2 + carry;
+            int rem = dig % b;
+            carry = dig / b;
+            sum = sum + rem * (int) Math.pow(10, count);
+            count++;
+        }
+        return sum;
+    }
+
+    public static int getMultipliedValue(int n, int val, int b, int multi) {
+        int temp = n;
+        int sum = 0;
+        int count = 0;
+        int carry = 0;
+        while (temp > 0 || carry != 0) {
+            int dig = temp % 10;
+            temp = temp / 10;
+            int num = dig * val + carry;
+            int rem = num % b;
+            int q = num / b;
+            carry = q;
+            sum = sum + rem * (int) Math.pow(10, count);
+            count++;
+        }
+        return sum ;
+    }
+
+
     public static void main(String[] args) {
-        anyBaseAnyBaseSubtraction();
+        anyBaseAnyBaseMultiplication();
 
     }
 
