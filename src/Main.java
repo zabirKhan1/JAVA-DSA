@@ -1175,9 +1175,69 @@ public class Main {
         System.out.println(false);
     }
 
+//-------------------------------Check Balance bracket---------------------------
+    public static boolean isOpener(char bracket) {
+        String opener = "([{";
+        for (int i = 0; i < opener.length(); i++) {
+            char ch = opener.charAt(i);
+            if (ch == bracket) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isCloser(char bracket) {
+        String closer = ")]}";
+        for (int i = 0; i < closer.length(); i++) {
+            char ch = closer.charAt(i);
+            if (ch == bracket) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static char getOpnerBasedOnCloser(char bracket) {
+        if (bracket == ')') {
+            return '(';
+        } else if (bracket == ']') {
+            return '[';
+        } else {
+            return '{';
+        }
+
+    }
+
+
+    public static void checkBalanceBracket() {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        Stack<Character> sta = new Stack<>();
+
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (isOpener(ch)) {
+                sta.push(ch);
+            } else {
+                if(sta.isEmpty()) {
+                    System.out.println(false);
+                    return;
+                }
+                if (sta.peek() == getOpnerBasedOnCloser(ch)) {
+                    sta.pop();
+                }
+
+            }
+        }
+
+        System.out.println(sta.isEmpty());
+    }
+//*************************************************************
 
     public static void main(String[] args) {
-        checkBracket();
+        checkBalanceBracket();
 
     }
 
