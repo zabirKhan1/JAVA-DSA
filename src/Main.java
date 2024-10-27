@@ -1,5 +1,7 @@
 import java.security.PublicKey;
 import java.util.Scanner;
+import java.util.Stack;
+
 
 import static jdk.internal.org.jline.utils.Colors.h;
 
@@ -1076,8 +1078,80 @@ public class Main {
 
     }
 
+    //--------------------(48) DIff Of two Array --------------------------
+    public static void subOftwoArray() {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int[] arr1 = new int[a];
+
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = sc.nextInt();
+        }
+
+        int b = sc.nextInt();
+        int[] arr2 = new int[b];
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = sc.nextInt();
+        }
+
+
+        int[] ans = new int[b];
+
+
+        int i = arr1.length - 1;
+        int j = arr2.length - 1;
+        int k = ans.length - 1;
+        int borrow = 0;
+
+        while (k >= 0) {
+            int dig = 0;
+            int valA = i >= 0 ? arr1[i] : 0;
+
+            if (arr2[j] + borrow >= valA) {
+                dig = arr2[j] + borrow - valA;
+            } else {
+                dig = arr2[j] + 10 + borrow - valA;
+                borrow = -1;
+            }
+
+            ans[k] = dig;
+            i--;
+            j--;
+            k--;
+
+        }
+        int idx = 0;
+        while (idx < ans.length) {
+            if (ans[idx] == 0) {
+                idx++;
+            } else {
+                break;
+            }
+        }
+
+        for (int m = idx; m < ans.length; m++) {
+
+            System.out.println(ans[m]);
+        }
+    }
+
+    //--------------------(49) Check Stack--------------------------
+    public static void checkStack() {
+        Stack<Integer> st = new Stack<>();
+        st.push(30);
+        System.out.println(st);
+        st.push(20);
+        st.push(10);
+        System.out.println(st);
+        st.pop();
+        System.out.println(st);
+        st.peek();
+
+    }
+
+
     public static void main(String[] args) {
-        sumOfTwoArrayWithCarry();
+        checkStack();
 
     }
 
