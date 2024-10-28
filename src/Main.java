@@ -1149,6 +1149,7 @@ public class Main {
 
     }
 
+    //--------------------(50) Check bracket--------------------------
     public static void checkBracket() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -1175,7 +1176,7 @@ public class Main {
         System.out.println(false);
     }
 
-//-------------------------------Check Balance bracket---------------------------
+    //-------------------------------(51)Check Balance bracket---------------------------
     public static boolean isOpener(char bracket) {
         String opener = "([{";
         for (int i = 0; i < opener.length(); i++) {
@@ -1221,7 +1222,7 @@ public class Main {
             if (isOpener(ch)) {
                 sta.push(ch);
             } else {
-                if(sta.isEmpty()) {
+                if (sta.isEmpty()) {
                     System.out.println(false);
                     return;
                 }
@@ -1236,8 +1237,68 @@ public class Main {
     }
 //*************************************************************
 
+    //--------------------(52) First Greater to Right--------------------------
+    public static void firstGreater() {
+        Scanner sc = new Scanner(System.in);
+        int length = sc.nextInt();
+        int[] arr = new int[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            int num = firstGreater(arr, i, arr[i]);
+            System.out.println("First areater Number for " + arr[i] + " is " + num);
+        }
+
+    }
+
+    public static int firstGreater(int[] arr, int i, int ele) {
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[j] > ele) {
+                return arr[j];
+            }
+        }
+        return -1;
+    }
+
+
+    //--------------------(53) First Greater to Right by stack--------------------------
+    public static void firstGreaterRightByStack() {
+        Scanner sc = new Scanner(System.in);
+        int length = sc.nextInt();
+        int[] arr = new int[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int[] ans = new int[length];
+        Stack<Integer> st = new Stack<>();
+
+        st.push(arr[arr.length - 1]);
+        ans[arr.length - 1] = -1;
+
+        for (int i = arr.length - 2; i >= 0; i--) {
+            while (st.size() != 0 && st.peek() <= arr[i]) {
+                st.pop();
+            }
+            if (st.size() == 0) {
+                ans[i] = -1;
+            } else {
+                ans[i] = st.peek();
+            }
+
+            st.push(arr[i]);
+
+
+        }
+        for (int i = 0; i < ans.length; i++) {
+            System.out.println(ans[i]);
+        }
+    }
+
     public static void main(String[] args) {
-        checkBalanceBracket();
+        firstGreaterRightByStack();
 
     }
 
