@@ -1297,8 +1297,45 @@ public class Main {
         }
     }
 
+    //--------------------(54) SPAN IN STOCK--------------------------
+    public static void stockQ() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Stack<Integer> st = new Stack<>();
+
+        int[] ans = new int[n];
+
+
+        st.push(0);
+        ans[0] = 1;
+
+        for (int i = 1; i < n; i++) {
+            while (!st.isEmpty() && arr[st.peek()] < arr[i]) {
+                st.pop();
+            }
+
+            if (st.isEmpty()) {
+                ans[i] = i + 1;
+            } else {
+                ans[i] = i - st.peek();
+            }
+            st.push(i);
+        }
+
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(ans[i]);
+        }
+    }
+
     public static void main(String[] args) {
-        firstGreaterRightByStack();
+        stockQ();
 
     }
 
