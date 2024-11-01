@@ -1334,8 +1334,67 @@ public class Main {
         }
     }
 
+    //--------------------(56) BIGGEST HISTOGRAM --------------------------
+    public static void biggestHistogram() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        int[] lb = new int[n];
+        int[] rb = new int[n];
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        st.push(arr.length - 1);
+        rb[arr.length - 1] = arr.length - 1;
+
+        for (int i = arr.length - 2; i >= 0; i--) {
+            while (!st.isEmpty() && arr[st.peek()] >= arr[i]) {
+                st.pop();
+            }
+
+            if (st.isEmpty()) {
+                rb[i] = arr.length;
+            } else {
+                rb[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        st = new Stack<>();
+        lb[0] = -1;
+        st.push(0);
+        for (int i = 1; i < arr.length; i++) {
+            while (!st.isEmpty() && arr[st.peek()] > arr[i]) {
+                st.pop();
+            }
+            if (st.isEmpty()) {
+                lb[i] = -1;
+            } else {
+                lb[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        int maxArea = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            int width =  rb[i] -lb[i] - 1;
+            int area = width * arr[i];
+            if (area > maxArea) {
+                maxArea = area;
+            }
+        }
+
+        System.out.println(maxArea);
+
+    }
+
+
+
     public static void main(String[] args) {
-        stockQ();
+        biggestHistogram();
 
     }
 
